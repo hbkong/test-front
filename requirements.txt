@@ -1,0 +1,10 @@
+numpy
+pandas
+heroku
+streamlit
+plotly
+TA-Lib
+yfinance
+finance-datareader
+fastapi
+uvicorn[standard]
