@@ -5,10 +5,17 @@ import talib
 import yfinance as yf
 from plotly.subplots import make_subplots
 from talib import BBANDS, MA_Type
+import requests
+import json
+import pandas as pd
 
-hist = yf.Ticker("NVDA").history(period='1y', interval='1d')
 
-st.header("Tesla Candle Stick")
+response = requests.get("http://172.20.0.70:23052/stocks/random").text
+hist = json.loads(response)
+hist = pd.DataFrame(hist)
+
+
+st.header("Random Candle Stick")
 
 fig3 = make_subplots(specs=[[{"secondary_y": True}]])
 fig3.add_trace(
