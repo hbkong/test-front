@@ -5,10 +5,15 @@ import requests
 import streamlit as st
 from plotly.subplots import make_subplots
 
-response = requests.get("https://stock-samples.herokuapp.com/stocks/random")
-hist = pd.read_json(response.json(), orient='records')
+response = requests.get("https://stock-samples.herokuapp.com/stocks/random").json()
 
-st.header("Random Candle Stick")
+
+st.header(f"stock_name = {response['name']}")
+st.header(f"symbol = {response['symbol']}")
+st.header(f"start_datetime = {response['start_datetime']}")
+st.header(f"end_datetime = {response['end_datetime']}")
+
+hist = pd.DataFrame(response['stocks'])
 
 fig3 = make_subplots(specs=[[{"secondary_y": True}]])
 fig3.add_trace(
